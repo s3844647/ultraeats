@@ -1,26 +1,25 @@
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/layout/Header";
+import LandingPage from "./components/publicPages/LandingPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          yeeeeeeeeeeeeeeeee
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <Header/>
+                    <Routes>
+                        {/* Public Routes */}
+                        <Route path="/" element={<LandingPage/>} />
+                    </Routes>
+                </div>
+            </Router>
+        )
+    }
 }
 
 export default App;
