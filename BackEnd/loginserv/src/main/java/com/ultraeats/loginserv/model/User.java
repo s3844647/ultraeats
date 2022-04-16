@@ -1,5 +1,6 @@
 package com.ultraeats.loginserv.model;
 
+import java.util.Collection;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +11,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Table(name = "users")
 @Entity
-public class User { // User model class. Includes annotations for database usage.
+public class User implements UserDetails { // User model class. Includes annotations for database usage.
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +34,7 @@ public class User { // User model class. Includes annotations for database usage
 	@NotBlank(message = "Error: Password is required")
 	private String password;
 	private String confirmPassword;
-	private String accountType;
+	private AccountType accountType; // enum version of account type (or role)
 
 	public User() {
 
@@ -74,11 +80,11 @@ public class User { // User model class. Includes annotations for database usage
 		this.confirmPassword = confirmPassword;
 	}
 
-	public String getAccountType() {
+	public AccountType getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(String accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
@@ -99,6 +105,38 @@ public class User { // User model class. Includes annotations for database usage
 		return Objects.equals(accountType, other.accountType) && Objects.equals(confirmPassword, other.confirmPassword)
 				&& Objects.equals(email, other.email) && Objects.equals(password, other.password)
 				&& Objects.equals(userId, other.userId) && Objects.equals(username, other.username);
+	}
+
+	// UserDetails methods
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

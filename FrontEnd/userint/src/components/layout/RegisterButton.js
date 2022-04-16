@@ -5,7 +5,9 @@ function RegisterButton() {
     return (
         <div>
             <button className="nav-button">
-                Register
+                <Link className="nav-link" to="/register">
+                    Register
+                </Link>
             </button>
         </div>
     )

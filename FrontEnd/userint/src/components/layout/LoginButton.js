@@ -5,7 +5,9 @@ function LoginButton() {
     return (
         <div>
             <button className="nav-button">
-                Log in
+                <Link className="nav-link" to="/login">
+                    Log in
+                </Link>
             </button>
         </div>
     )
