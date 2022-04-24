@@ -12,6 +12,8 @@ ADD LATER.
 Some code based on Bookeroo (MAKE SURE TO ADD CREDITS).
 
 Some based on this: https://www.bezkoder.com/spring-boot-react-jwt-auth/
+https://www.bezkoder.com/react-hooks-redux-login-registration-example/
+https://github.com/dockwa/simple-react-validator/issues/13
 
 Some of it based on the tutorial notes.
 

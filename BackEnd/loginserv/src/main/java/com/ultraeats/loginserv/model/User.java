@@ -34,7 +34,7 @@ public class User implements UserDetails { // User model class. Includes annotat
 	@NotBlank(message = "Error: Password is required")
 	private String password;
 	private String confirmPassword;
-	private AccountType accountType; // enum version of account type (or role)
+	private AccountType accountType; // enum version of account type
 
 	public User() {
 

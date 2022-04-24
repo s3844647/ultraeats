@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import AccessService from '../../actions/user-service';
+import React, { useState, useEffect } from "react";
+import userService from "../../actions/user-service";
 
-const LandingPage = () => {
+const BoardUser = () => {
     const [content, setContent] = useState("");
     useEffect(() => {
-        AccessService.getPublicContent().then(
+        userService.getUserBoard().then(
             (response) => {
                 setContent(response.data);
             },
             (error) => {
-                const _content = error.toString();
+                const _content = error.response.data.message;
                 setContent(_content);
             }
         );
@@ -18,7 +18,6 @@ const LandingPage = () => {
         <div className="container">
             {content}
         </div>
-    )
-}
-
-export default LandingPage;
+    );
+};
+export default BoardUser;
