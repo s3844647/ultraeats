@@ -7,26 +7,22 @@ import RegisterButton from './RegisterButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "../../actions/auth";
 import EventBus from "../../helpers/EventBus";
+import jwt_decode from 'jwt-decode';
 
 const Header = () => {
-    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-    const [showAdminBoard, setShowAdminBoard] = useState(false);
     const { user: currentUser } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    var decoded = "";
+
+    if (currentUser) {
+        decoded = jwt_decode(currentUser.token);
+    }
 
     const logOut = useCallback(() => {
         dispatch(logout());
     }, [dispatch]);
 
     useEffect(() => {
-        if (currentUser) {
-            setShowModeratorBoard(currentUser.accountType === "MODERATOR");
-            setShowAdminBoard(currentUser.accountType === "ADMIN");
-        } else {
-            setShowModeratorBoard(false);
-            setShowAdminBoard(false);
-        }
-
         EventBus.on("logout", () => {
             logOut();
         });
@@ -44,26 +40,10 @@ const Header = () => {
                     </React.Fragment>
                 </div>
                 <div className="navbar-nav mr-auto">
-                    {showModeratorBoard && (
-                        <li className="nav-item">
-                            <Link to="/mod" className="nav-link">
-                                Moderator Board
-                            </Link>
-                        </li>
-                    )}
-
-                    {showAdminBoard && (
-                        <li className="nav-item">
-                            <Link to="/admin" className="nav-link">
-                                Admin Board
-                            </Link>
-                        </li>
-                    )}
-
                     {currentUser && (
                         <li className="nav-item">
-                            <Link to={"/user"} className="nav-link">
-                                <b>User</b>
+                            <Link to={"/locator"} className="nav-link">
+                                <b>Locator</b>
                             </Link>
                         </li>
                     )}
@@ -73,7 +53,7 @@ const Header = () => {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link to={"/profile"} className="nav-link">
-                                <b>Welcome, {currentUser.username}</b>
+                                <b>Welcome, {decoded['username']}</b>
                             </Link>
                         </li>
                         <li className="nav-item">

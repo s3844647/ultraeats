@@ -17,7 +17,7 @@
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^2.1.3",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "simple-react-validator": "^1.6.1",
@@ -26,6 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "aws s3 sync build/ s3://ultraeats-s3-frontend --acl public-read",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

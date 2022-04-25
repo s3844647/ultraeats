@@ -96,7 +96,6 @@ public class UserController {
 			return ResponseEntity.ok(new JwtResponse(jwt, true));
 		} catch (Exception e) {
 			authException = "Error: Something went wrong with authentication.";
-			e.printStackTrace(); // remember to remove this
 		}
 		return new ResponseEntity<String>(authException, HttpStatus.BAD_REQUEST);
 	}

@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
-import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import LandingPage from "./components/publicPages/LandingPage";
 import Login from "./components/publicPages/Login";
 import Register from "./components/publicPages/Register";
 import Profile from "./components/privatePages/Profile";
-import BoardUser from "./components/privatePages/BoardUser";
-import BoardAdmin from "./components/privatePages/BoardAdmin";
-import BoardModerator from "./components/privatePages/BoardModerator";
+import Locator from "./components/privatePages/Locator";
 import { clearMessage } from "./actions/messages";
 import { history } from "./helpers/history";
 
@@ -35,9 +31,7 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     {/* Private Routes */}
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/user" element={<BoardUser />} />
-                    <Route path="/mod" element={<BoardModerator />} />
-                    <Route path="/admin" element={<BoardAdmin />} />
+                    <Route path="/locator" element={<Locator />} />
                 </Routes>
             </div>
         </Router>
@@ -46,3 +40,4 @@ const App = () => {
 }
 
 export default App;
+
